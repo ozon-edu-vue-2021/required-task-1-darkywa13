@@ -1,160 +1,221 @@
+:root {
+  --body-bg-color: #f5f5f5;
+  --bg-color-btn-green: #66bb6a;
+  --bg-color-btn-green-hover: #4caf50;
+  --bg-color-btn-grey: #cfd8dc;
+  --bg-color-main-content: #ffffff;
+  --color-image-link: #ec407a;
+  --color-image-link-hover: #e91e63;
+
+  --main-max-width: 1400px;
+
+  --column-count-desktop: 4;
+  --column-count-laptop: 3;
+  --column-count-tablet: 2;
+  --column-count-mobile: 1;
+
+  --theme-border-radius: 6px;
+
+  --popup-content-max-width: 600px;
+  --popup-image-figure-max-height: 350px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
 /* Base style */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #F5F5F5;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--body-bg-color);
 }
 
 img {
-    width: 100%;
-    max-width: 100%;
-    display: bloсk;
-}
-
-a {
-    color: #EC407A;
-}
-
-a:hover {
-    color: #E91E63;
+  width: 100%;
+  max-width: 100%;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 button {
-    display: block;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    transition: 0.2s background-color;
+  border: none;
 }
 
-button:disabled {
-    background-color: #CFD8DC;
+button:hover {
+  cursor: pointer;
 }
 
-button:disabled:hover {
-    background-color: #CFD8DC;
+button:focus {
+  outline: none;
 }
 
-main {
-    max-width: 1400px;
-    min-height: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding: 50px;
-    background-color: #fff;
-    box-sizing: border-box;
-    border-radius: 6px;
-    margin: 50px auto;
+.overflow-hidden {
+  overflow: hidden;
 }
 
-/* Action style */
-.action {
-    background-color: #66BB6A;
-    font-size: 16px;
-    padding: 10px 20px;
-    border-radius: 6px;
-    margin: 10px 0;
+/* loader */
+.loader-outer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  z-index: 10;
 }
 
-.action:hover {
-    background-color: #4CAF50;
+.loader-outer .loader {
+  margin: auto;
 }
 
-/* Images style */
-.content {
-    position: relative;
-    padding: 20px;
-    margin-bottom: 20px;
-    column-count: 4;
-    column-gap: 5px;
-    min-height: 400px;
+/* main content */
+.main {
+  max-width: var(--main-max-width);
+  padding: 70px;
+  background-color: var(--bg-color-main-content);
+  border-radius: var(--theme-border-radius);
+  margin: 50px auto;
 }
 
-a {
-    display: inline-block;
-    border-radius: 6px;
-    overflow: hidden;
-    width: 100%;
-    min-height: 100px;
+.main__actions {
+  text-align: center;
+  margin-bottom: 40px;
 }
 
-a:nth-child(n) {
-    background-color: #EFEBE9;
+.main__action {
+  background-color: var(--bg-color-btn-green);
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: var(--theme-border-radius);
+  color: #fff;
 }
 
-a:nth-child(2n) {
-    background-color: #D7CCC8;
+.main__action:disabled {
+  background-color: var(--bg-color-btn-grey);
 }
 
-a:nth-child(3n) {
-    background-color: #BCAAA4;
+.main__action:not(:disabled):hover {
+  background-color: var(--bg-color-btn-green-hover);
 }
 
-/* Popup style */
-.popup .content {
-    text-align: right;
-    column-count: initial;
+.main__content {
+  column-count: var(--column-count-desktop);
+  column-gap: 5px;
+  min-height: 400px;
 }
 
-figure {
-    max-width: 100%;
-    min-height: 350px;
-    margin: 0;
+.content-item {
+  display: inline-block;
+  border-radius: var(--theme-border-radius);
+  overflow: hidden;
+  width: 100%;
+  min-height: 100px;
 }
 
-figure img {
-    border-radius: 6px;
-}
-
-figcaption {
-    color: #424242;
-    margin: 5px 0;
-}
-
-.content {
-    border-radius: 6px;
-}
-
+/* popup */
 .popup {
-    position: fixed;
-    visibility: hidden;
-    display: flex;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: rgba(33, 33, 33, 0.5);
-    z-index: -1;
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(33, 33, 33, 0.5);
+  z-index: 1;
+  padding: 40px;
+  overflow-y: scroll;
 }
 
 .popup.open {
-    visibility: visible;
+  display: flex;
 }
 
-.action {
-    position: absolute;
-    top: 50px;
-    right: 50px;
-    background-color: transparent;
-    line-height: 0;
-    font-size: 50px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+.popup__actions {
+  position: absolute;
+  top: 50px;
+  right: 50px;
 }
 
-.popup .content {
-    width: 100%;
-    margin: auto;
-    box-sizing: border-box;
-    max-width: 600px;
-    background-color: #fff;
-    border-radius: 6px;
-    padding: 20px;
+.popup__action {
+  background-color: transparent;
+  font-size: 50px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: 0.2s background-color;
 }
 
-.popup .link {
-    display: inline;
+.popup__action:hover {
+  background-color: #cfd8dc;
+}
+
+.popup__content {
+  width: 100%;
+  margin: auto;
+  max-width: var(--popup-content-max-width);
+  background-color: #fff;
+  border-radius: var(--theme-border-radius);
+  padding: 20px;
+}
+
+.popup-image {
+  text-align: right;
+}
+
+.popup-image figure {
+  max-width: 100%;
+  min-height: var(--popup-image-figure-max-height);
+  margin: 0;
+}
+
+.popup-image figure img {
+  border-radius: var(--theme-border-radius);
+}
+
+.popup-image figcaption {
+  color: #424242;
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+.popup-image__link {
+  display: inline;
+  color: var(--color-image-link);
+}
+
+.popup-image__link:hover {
+  color: var(--color-image-link-hover);
+}
+
+/* responsive */
+@media screen and (max-width: 1024px) {
+  .main__content {
+    column-count: var(--column-count-laptop);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main__content {
+    column-count: var(--column-count-tablet);
+  }
+
+  .popup-image figure {
+    min-height: auto;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .main__content {
+    column-count: var(--column-count-mobile);
+  }
 }
