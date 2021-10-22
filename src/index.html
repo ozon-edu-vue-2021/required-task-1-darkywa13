@@ -1,53 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/loader.css" />
+    <link rel="stylesheet" href="./styles/index.css" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/loader.css">
-    <link rel="stylesheet" href="./styles/index.css">
     <title>Broken page</title>
-</head>
+  </head>
 
-<body>
-    <main class="main">
-        <div class="loader">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <button class="action fetch" data-page="2">Загрузить картинки</button>
-        <section class="images content"></section>
-    </main>
-    <div class="popup">
-        <button class="action close">&Cross;</button>
-        <div class="content"></div>
+  <body>
+    <div class="loader-outer">
+      <div id="loader" class="loader">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
 
+    <main class="main">
+      <div class="main__actions">
+        <button id="fetch" class="main__action" type="button" data-page="2">
+          Загрузить картинки
+        </button>
+      </div>
+
+      <section id="images" class="main__content"></section>
+    </main>
+
+    <div class="popup">
+      <div class="popup__actions">
+        <button id="popup-close" class="popup__action" type="button">
+          &times;
+        </button>
+      </div>
+
+      <div id="popup-content" class="popup__content"></div>
+    </div>
+
+    <template id="tpl-image">
+      <a class="content-item" href="" data-id="">
+        <img src="" width="250" alt="" />
+      </a>
+    </template>
+
+    <template id="tpl-popup-image">
+      <div class="popup-image">
+        <figure>
+          <img src="" alt="" />
+          <figcaption>
+            Автор:
+            <address class="popup-image__author"></address>
+          </figcaption>
+        </figure>
+        <a class="popup-image__link" href="" target="_blank"
+          >Открыть в полном размере</a
+        >
+      </div>
+    </template>
+
     <script src="./scripts/index.js"></script>
-
-    <template id="image">
-        <a class="link" href="" data-id="">
-            <img src="" widht="250" alt=""></img>
-        </a>
-    </template>
-
-    <template id="popup-image">
-        <div>
-            <figure>
-                <img src="" alt="">
-                <figcaption>
-                    Автор: <address class="author"></address>
-                </figcaption>
-            </figure>
-            <a class="link open" href="" target="_blank">Открыть в полном размере</a>
-        </div>
-    </template>
-</body>
-
+  </body>
 </html>
